@@ -1,0 +1,27 @@
+version: '3.6'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'gitlab'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost'
+    ports:
+      - '127.0.0.1:80:80'
+      - '127.0.0.1:443:443'
+      - '127.0.0.1:22:22'
+    volumes:
+      - '.data/config:/etc/gitlab'
+      - '.data/logs:/var/log/gitlab'
+      - '.data/data:/var/opt/gitlab'
+    shm_size: '256m'
+  runner:
+    image: 'gitlab/gitlab-runner:latest'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    depends_on:
+      gitlab:
+        condition: service_healthy
+
