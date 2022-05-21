@@ -19,5 +19,7 @@ that will configure GitLab with convenient, **but insecure**, credentials and re
 $ ./initial_setup.sh
 ```
 
-GitLab will be accessible on http://localhost with
-admin user `root` and password `password`.
+GitLab will be accessible on http://gitlab.localtest.me with admin user `root` and password `password`.
+
+The `gitlab.localtest.me` domain is configured to resolve to the `gitlab` container inside the docker network
+created by the `docker-compose`. It will be resolved to 127.0.0.1 on your host (see https://readme.localtest.me/).
