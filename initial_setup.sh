@@ -25,8 +25,7 @@ docker-compose exec runner \
     --executor docker \
     --non-interactive \
     --registration-token "${REGISTRATION_TOKEN}" \
-    --url http://gitlab \
-    --clone-url http://gitlab \
+    --url http://gitlab.localtest.me \
     --docker-image alpine \
     --docker-network-mode "${DOCKER_NETWORK_NAME}_default"
 

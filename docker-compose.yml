@@ -6,7 +6,7 @@ services:
     hostname: 'gitlab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://localhost'
+        external_url 'http://gitlab.localtest.me'
     ports:
       - '127.0.0.1:80:80'
       - '127.0.0.1:443:443'
@@ -16,6 +16,11 @@ services:
       - '.data/logs:/var/log/gitlab'
       - '.data/data:/var/opt/gitlab'
     shm_size: '256m'
+    networks:
+      default:
+        aliases:
+          - gitlab.localtest.me
+
   runner:
     image: 'gitlab/gitlab-runner:latest'
     volumes:
